@@ -44,21 +44,6 @@ El módulo principal (`top_hc_sr04.v`) gestiona la medición mediante una Máqui
 5. **`ST_REST`:** Cumple el periodo de reposo entre mediciones (60 ms) para evitar ecos cruzados
 
 ---
-
-## 📊 Simulación
-
-La verificación funcional se llevó a cabo simulando la prueba de banco (`tb_top_hc_sr04.v`) mediante **Icarus Verilog** e inspeccionando las formas de onda extraídas en el archivo `.vcd`:
-
-```bash
-# Compilar la simulación
-iverilog -o sim_hc_sr04.vvp tb_top_hc_sr04.v top_hc_sr04.v
-
-# Ejecutar y generar el archivo VCD
-vvp sim_hc_sr04.vvp
-
-# Visualizar ondas en GTKWave
-gtkwave tb_top_hc_sr04.vcd
-
 ## ⚠️ Dificultades Técnicas y Reprocesos en la Implementación
 
 Durante la fase de diseño, configuración física y pruebas de laboratorio se presentaron los siguientes inconvenientes y reprocesos técnicos[cite: 1]:
@@ -77,3 +62,20 @@ Durante la fase de diseño, configuración física y pruebas de laboratorio se p
 * **Fallo de hardware en práctica libre:** Al intentar validar el circuito en el espacio de práctica libre, la tarjeta FPGA asignada presentaba un fallo físico (tarjeta quemada/dañada), impidiendo realizar la carga del *bitstream* y la prueba en protoboard[cite: 1].
 
 > **Nota:** A pesar de los contratiempos con el montaje y el hardware físico en el laboratorio, el diseño lógico de la máquina de estados y el control del sensor en Verilog se verificaron y validaron al 100% mediante simulación con Icarus Verilog y visualización de ondas en GTKWave[cite: 1].
+
+---
+
+## 📊 Simulación
+
+La verificación funcional se llevó a cabo simulando la prueba de banco (`tb_top_hc_sr04.v`) mediante **Icarus Verilog** e inspeccionando las formas de onda extraídas en el archivo `.vcd`:
+
+```bash
+# Compilar la simulación
+iverilog -o sim_hc_sr04.vvp tb_top_hc_sr04.v top_hc_sr04.v
+
+# Ejecutar y generar el archivo VCD
+vvp sim_hc_sr04.vvp
+
+# Visualizar ondas en GTKWave
+gtkwave tb_top_hc_sr04.vcd
+
