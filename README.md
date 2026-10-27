@@ -58,3 +58,22 @@ vvp sim_hc_sr04.vvp
 
 # Visualizar ondas en GTKWave
 gtkwave tb_top_hc_sr04.vcd
+
+## ⚠️ Dificultades Técnicas y Reprocesos en la Implementación
+
+Durante la fase de diseño, configuración física y pruebas de laboratorio se presentaron los siguientes inconvenientes y reprocesos técnicos[cite: 1]:
+
+### 1. Incompatibilidad en el Archivo de Restricciones (`.lpf`) y Pinout
+* **Selección incorrecta de la versión de la placa:** Inicialmente se configuraron las restricciones de pines considerando una versión distinta de la FPGA Colorlight (v7.0 en lugar de v8.2), provocando que los pines asignados no correspondieran con los conectores físicos de la tarjeta[cite: 1].
+* **Errores de límites en el encapsulado:** Durante el proceso de sintaxis y ruteo con `nextpnr-ecp5`, se asignaron pines inexistentes en el paquete `CABGA256` (por ejemplo, pines fuera del rango de 16 columnas), lo cual abortó la compilación del *bitstream*[cite: 1].
+* **Mapeo de periféricos internos:** Se asignaron por error señales de la barra de LEDs externa a pines reservados para el LED *onboard* (`T6`) y el botón de usuario (`R7`) de la propia placa[cite: 1].
+
+### 2. Omisión de la Red de Masa Común (GND) en la Protoboard
+* **Circuito abierto en la barra de LEDs:** Al realizar el cableado en la protoboard, la atención se centró exclusivamente en conectar los nodos positivos (ánodos) de los LEDs a las salidas I/O correspondientes de la FPGA[cite: 1].
+* **Falta de referencia de retorno:** Se omitió conectar la línea de masa (GND) de la FPGA hacia el bus azul de la protoboard[cite: 1]. Sin una referencia de $0\text{ V}$ común, la corriente no podía retornar a la tarjeta y la barra de LEDs no encendió[cite: 1].
+
+### 3. Inconvenientes en Laboratorio y Práctica Libre
+* **Falta de tiempo en sesión presencial:** Debido al tiempo dedicado a la corrección del archivo de restricciones y al ajuste de las conexiones físicas, no se alcanzó a validar el funcionamiento dinámico del sensor en la sesión oficial de laboratorio[cite: 1].
+* **Fallo de hardware en práctica libre:** Al intentar validar el circuito en el espacio de práctica libre, la tarjeta FPGA asignada presentaba un fallo físico (tarjeta quemada/dañada), impidiendo realizar la carga del *bitstream* y la prueba en protoboard[cite: 1].
+
+> **Nota:** A pesar de los contratiempos con el montaje y el hardware físico en el laboratorio, el diseño lógico de la máquina de estados y el control del sensor en Verilog se verificaron y validaron al 100% mediante simulación con Icarus Verilog y visualización de ondas en GTKWave[cite: 1].
