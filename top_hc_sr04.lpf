@@ -1,0 +1,38 @@
+# ==============================================================================
+# RESTRICCIONES DE PINES PARA COLORLIGHT 5A-75E V8.2
+# Proyecto: Sensor Ultrasónico HC-SR04 y Barra de 8 LEDs
+# ==============================================================================
+
+# Reloj principal de 25 MHz (Oscilador Onboard)
+LOCATE COMP "clk" SITE "P6";
+IOBUF PORT "clk" IO_TYPE=LVCMOS33;
+
+# Reset activo en bajo (Botón Onboard M13)
+LOCATE COMP "rst_n" SITE "M13";
+IOBUF PORT "rst_n" IO_TYPE=LVCMOS33;
+
+# Interfaz Sensor Ultrasónico HC-SR04
+LOCATE COMP "trig" SITE "F5"; # Conector J2 (Pin 1 Derecha) -> Conexión directa a TRIG
+LOCATE COMP "echo" SITE "E4"; # Conector J1 (Pin 2 Izquierda) -> Salida del Divisor (3.3V)
+
+IOBUF PORT "trig" IO_TYPE=LVCMOS33;
+IOBUF PORT "echo" IO_TYPE=LVCMOS33;
+
+# Barra de 8 LEDs (Conectores J1 y J2)
+LOCATE COMP "leds[0]" SITE "C4"; # Conector J1 - Pin 1 Izquierda
+LOCATE COMP "leds[1]" SITE "D4"; # Conector J1 - Pin 1 Derecha
+LOCATE COMP "leds[2]" SITE "D3"; # Conector J1 - Pin 3 Izquierda
+LOCATE COMP "leds[3]" SITE "E3"; # Conector J1 - Pin 3 Derecha
+LOCATE COMP "leds[4]" SITE "F3"; # Conector J2 - Pin 1 Izquierda
+LOCATE COMP "leds[5]" SITE "G3"; # Conector J2 - Pin 2 Izquierda
+LOCATE COMP "leds[6]" SITE "G4"; # Conector J2 - Pin 3 Izquierda
+LOCATE COMP "leds[7]" SITE "H3"; # Conector J2 - Pin 3 Derecha
+
+IOBUF PORT "leds[0]" IO_TYPE=LVCMOS33;
+IOBUF PORT "leds[1]" IO_TYPE=LVCMOS33;
+IOBUF PORT "leds[2]" IO_TYPE=LVCMOS33;
+IOBUF PORT "leds[3]" IO_TYPE=LVCMOS33;
+IOBUF PORT "leds[4]" IO_TYPE=LVCMOS33;
+IOBUF PORT "leds[5]" IO_TYPE=LVCMOS33;
+IOBUF PORT "leds[6]" IO_TYPE=LVCMOS33;
+IOBUF PORT "leds[7]" IO_TYPE=LVCMOS33;
